@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Website Maker | Generate the Future</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="logo">BHINDI AI</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#showcase">Showcase</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <button class="btn-primary nav-btn">Start Generating</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">Next-Gen Engine</div>
+            <h1 class="hero-title">Design Websites With <br><span class="gradient-text" id="typewriter"></span><span class="cursor">|</span></h1>
+            <p class="hero-subtitle">Describe your vision. Our advanced neural engine writes the code, designs the UI, and deploys your masterpiece in seconds. No templates. Pure generation.</p>
+            <div class="hero-actions">
+                <input type="text" class="prompt-input" placeholder="e.g., Cyberpunk gaming website with neon UI...">
+                <button class="btn-primary generate-btn">Generate Now</button>
+            </div>
+        </div>
+        <div class="hero-visual fade-in">
+            <div class="glass-panel floating-ui">
+                <div class="mockup-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="mockup-body">
+                    <div class="skeleton-line title-skel"></div>
+                    <div class="skeleton-line text-skel"></div>
+                    <div class="skeleton-line text-skel short"></div>
+                    <div class="skeleton-box"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="workspace" class="workspace hidden">
+        <div class="panel code-panel">
+            <div class="panel-header" style="justify-content: flex-start; gap: 1rem;">
+                <button id="back-btn" class="btn-secondary">← Back</button>
+                <h3 style="flex: 1;">Generated Source</h3>
+                <button class="btn-secondary copy-btn">Copy Code</button>
+            </div>
+            <div class="code-container">
+                <pre><code id="code-viewer">/* Your generated HTML/CSS/JS will appear here */</code></pre>
+            </div>
+        </div>
+
+        <div class="panel preview-panel">
+            <div class="panel-header">
+                <h3>Live Preview</h3>
+                <div class="device-toggles">
+                    <button id="view-desktop" class="active">💻 Desktop</button>
+                    <button id="view-tablet">📱 Tablet</button>
+                    <button id="view-mobile">📱 Mobile</button>
+                    <button id="view-fullscreen" style="margin-left: 1rem; border-color: #a855f7; color: #a855f7;">⛶ Full Screen</button>
+                </div>
+            </div>
+            <div class="iframe-container">
+                <iframe id="preview-frame" src="/static/generated/latest/index.html"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <h2 class="section-title fade-in">Why Build When You Can <span class="gradient-text">Generate?</span></h2>
+        <div class="feature-grid">
+            <div class="feature-card glass-panel fade-in">
+                <div class="icon">✨</div>
+                <h3>Zero Templates</h3>
+                <p>Every pixel is generated from scratch based on your prompt. Unique layouts, unique aesthetics.</p>
+            </div>
+            <div class="feature-card glass-panel fade-in" style="transition-delay: 0.1s;">
+                <div class="icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>From text prompt to fully functional HTML, CSS, and JS in under 10 seconds.</p>
+            </div>
+            <div class="feature-card glass-panel fade-in" style="transition-delay: 0.2s;">
+                <div class="icon">📱</div>
+                <h3>Mobile-First</h3>
+                <p>Calculated responsive design ensures your generated site looks flawless on any device.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

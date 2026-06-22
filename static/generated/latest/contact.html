@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Nature Explorer</title>
+
+<style>
+body{margin:0;font-family:Arial,sans-serif;color:#333;background:#f5f5f5;}header.navbar{position:fixed;top:0;width:100%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:0 20px;height:60px;}header .logo{font-size:1.5rem;font-weight:bold;}header nav ul{list-style:none;display:flex;margin:0;padding:0;}header nav ul li{margin-left:20px;}header nav ul li a{color:#333;text-decoration:none;transition:color .3s;}header nav ul li a:hover{color:#007BFF;}section{height:100vh;display:flex;align-items:center;justify-content:center;padding-top:60px;}section.home{background:url('https://loremflickr.com/1200/800/nature,landscape') center/cover no-repeat;}section.home .hero{text-align:center;background:rgba(255,255,255,0.8);padding:40px;border-radius:8px;}section .content{max-width:1200px;width:90%;margin:auto;text-align:center;}section.about img,section.about-page img{max-width:100%;height:auto;margin-top:20px;border-radius:8px;}section.services .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}section.services .card{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);flex:1 1 300px;max-width:300px;}section.services .card img{width:100%;height:auto;border-radius:4px;margin-top:10px;}section.gallery .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}section.gallery .grid img{width:100%;height:auto;border-radius:4px;}section.contact .form-group{margin-bottom:15px;}section.contact input,section.contact textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:4px;}section.contact .btn{background:#007BFF;color:#fff;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;}section.contact .btn:hover{background:#0056b3;}footer.footer{text-align:center;padding:20px;background:#222;color:#fff;}@media (max-width:768px){header nav ul{flex-direction:column;background:#fff;position:absolute;top:60px;right:0;width:200px;display:none;}header nav ul.show{display:flex;}header nav ul li{margin:10px 0;}header .menu-toggle{display:block;cursor:pointer;}}.menu-toggle{display:none;font-size:1.5rem;}
+</style>
+</head>
+<body>
+<header class="navbar">
+<div class="logo"><a href="index.html">Nature Explorer</a></div>
+<nav>
+<ul>
+<li><a href="index.html#home">Home</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#services">Tours</a></li>
+<li><a href="index.html#gallery">Gallery</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+</nav>
+<div class="menu-toggle">&#9776;</div>
+</header>
+<main class="page">
+<section class="contact-page">
+<h1>Contact Us</h1>
+<form action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="424c77b8-bd17-44b3-a8c8-d14c040240c0">
+<div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
+<div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+<div class="form-group"><textarea name="message" placeholder="Your Message" rows="5" required></textarea></div>
+<button type="submit" class="btn">Send Message</button>
+</form>
+</section>
+</main>
+<footer class="footer">
+<p>&copy; 2026 Nature Explorer. All rights reserved.</p>
+</footer>
+
+<script>
+const menuToggle=document.querySelector('.menu-toggle');const navUl=document.querySelector('header nav ul');if(menuToggle){menuToggle.addEventListener('click',()=>{navUl.classList.toggle('show');});}document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();const target=document.querySelector(link.getAttribute('href'));if(target){target.scrollIntoView({behavior:'smooth'});if(navUl.classList.contains('show'))navUl.classList.remove('show');}});});
+</script>
+</body>
+</html>
