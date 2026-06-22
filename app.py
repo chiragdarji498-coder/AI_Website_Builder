@@ -1,9 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 from generator.website_generator import generate_website
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 # Create Flask app
 app = Flask(__name__)
@@ -15,26 +11,29 @@ def index():
     return render_template("index.html")
 
 
-# Website generation endpoint
+# Website generation API
 @app.route("/api/generate", methods=["POST"])
 def generate():
-    data = request.get_json()
-
-    if not data or "prompt" not in data:
-        return jsonify({
-            "success": False,
-            "error": "Prompt is required."
-        }), 400
-
-    prompt = data["prompt"]
-
     try:
+        # Get JSON data
+        data = request.get_json()
+
+        # Validate request
+        if not data or "prompt" not in data:
+            return jsonify({
+                "success": False,
+                "error": "Prompt is required."
+            }), 400
+
+        prompt = data["prompt"]
+
+        # Generate website
         generation_result = generate_website(prompt)
 
         return jsonify({
             "success": True,
             "message": "Website generated successfully!",
-            "preview_url": "/generated/latest/index.html",
+            "preview_url": "/static/generated/latest/index.html",
             "files": generation_result
         }), 200
 
@@ -45,7 +44,15 @@ def generate():
         }), 500
 
 
-# Only used for local development
+# Health check endpoint (recommended for Render)
+@app.route("/health")
+def health():
+    return jsonify({
+        "status": "healthy"
+    }), 200
+
+
+# Local development only
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
