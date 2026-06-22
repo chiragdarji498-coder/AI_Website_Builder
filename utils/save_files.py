@@ -5,13 +5,17 @@ from config import Config
 
 def save_generated_files(html_pages_dict, css, js):
     """
-    Inject CSS and JS into every HTML page and save them
-    under static/generated/latest.
+    Inject shared CSS and JS into all generated pages and save them.
     """
 
+    # Create output directory
     folder = os.path.join(Config.GENERATED_DIR, "latest")
     os.makedirs(folder, exist_ok=True)
 
+    # Main preview file
+    main_file_path = "/static/generated/latest/index.html"
+
+    # Shared CSS and JS
     style_tag = (
         f"<style>\n{css}\n</style>"
         if css and css.strip()
@@ -26,9 +30,10 @@ def save_generated_files(html_pages_dict, css, js):
 
     saved_pages = {}
 
+    # Process every HTML page
     for filename, html_content in html_pages_dict.items():
 
-        # Remove old references
+        # Remove old style.css references
         html_content = re.sub(
             r'<link[^>]+style\.css[^>]*>',
             '',
@@ -36,6 +41,7 @@ def save_generated_files(html_pages_dict, css, js):
             flags=re.IGNORECASE
         )
 
+        # Remove old script.js references
         html_content = re.sub(
             r'<script[^>]+script\.js[^>]*></script>',
             '',
@@ -43,7 +49,7 @@ def save_generated_files(html_pages_dict, css, js):
             flags=re.IGNORECASE
         )
 
-        # Inject CSS
+        # Inject CSS into <head>
         if style_tag:
             if re.search(r'</head>', html_content, re.IGNORECASE):
                 html_content = re.sub(
@@ -55,7 +61,7 @@ def save_generated_files(html_pages_dict, css, js):
             else:
                 html_content = style_tag + html_content
 
-        # Inject JS
+        # Inject JS before </body>
         if script_tag:
             if re.search(r'</body>', html_content, re.IGNORECASE):
                 html_content = re.sub(
@@ -74,18 +80,19 @@ def save_generated_files(html_pages_dict, css, js):
             f.write(html_content)
 
         # Store URL path
-        saved_pages[filename] = f"/static/generated/latest/{filename}"
+        saved_pages[filename] = (
+            f"/static/generated/latest/{filename}"
+        )
 
     # Remove legacy files
-    for old_file in ("style.css", "script.js"):
+    for old_file in ["style.css", "script.js"]:
         old_path = os.path.join(folder, old_file)
+
         if os.path.exists(old_path):
             os.remove(old_path)
 
+    # Return paths
     return {
-        "html": saved_pages.get(
-            "index.html",
-            "/static/generated/latest/index.html"
-        ),
+        "html": main_file_path,
         "pages": saved_pages
     }
